@@ -1,0 +1,15 @@
+language: ruby
+rvm:
+- 2.2.2
+deploy:
+  provider: heroku
+  api_key:
+    secure: LIwDjTubibxL6QIHPqCebYGJEJU0ImHPGWDrW4FhtR50XF9eQTZolw63jEqLcW8EWUHYVF5qaw0V01QMRm1Qc3Rt4Pza4qMAwRB9eHWJFtJNY5u2nFfwcme6Pg10kgdMivPNZX2yigAHJXKvulry6H2wqNpL1aVrtlaVUqVARq+9rJ8khLX3UcMe1oRdZPiKaKHdOgAhy2Mp1dosFkr+2llNSp4674+An89u7AVcSAz45XWb2LPvJqK9M2dagkf2kYNS5vaKxFtgqeV+KTMJuyZv+L0a8iW8he7zbjLVFEG7NWdvNHVep5hRwVY4d4exHmKntnSCq5REoD6J1LwndnFR4DK0m8FopfJFvzPf6jLT/BFst638HrFCiTg3fYC9RLo3KIbaZ/6cyEXrZfru1u5Oiaz55y4Pg00N04507uytgxgUgMmHdsxwMosIqz5yNuptjKzvebp3K9m1JzgdHh/80Tn6eVnE9IvAkmVU5/xubn/ytbfYwDSJEmVvHhJcr6COrIySnH42Dmdnh4ZKWeOzUWB4XlJMpzIovjPIalsDF6UBKS7jVYSIh8GI48TfI1BBCCoaEBv4pnyyvf8pDlqMh++ulDWLE4qLduO/YeFB4G2eoG5uS50IktL1OaVBvmy75ei08MC0Ff2K2FpV1y0FT/kzu5xeQgqB/qZBsAI=
+  app: guarded-fjord-4254
+  on:
+    repo: hyoshiok/rails_enpit
+addons:
+  postgresql: "9.3"
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
